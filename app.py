@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-sibling_dir = os.path.join(current_dir, "..", "Qdata")
+sibling_dir = os.path.join(current_dir,"Qdata")
 
 index_path=os.path.join(sibling_dir,"index.txt")
 Qindex_path=os.path.join(sibling_dir,"Qindex.txt")
