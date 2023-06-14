@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SearchEmAll - Search Page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Indie+Flower');
+
+    /* Loading animation styles */
+    .loader {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f2f2f2;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+    }
+
+    .loader .spinner {
+      width: 80px;
+      height: 80px;
+      border: 10px solid #3498db;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    /* SearchEmAll logo styles */
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo h1 {
+      font-size: 30px;
+      font-weight: bold;
+      color: #3498db;
+      margin: 0;
+      overflow: hidden; /* Ensure text doesn't overflow */
+      white-space: nowrap; /* Prevent line breaks */
+      animation: typing 2s steps(30) 1s forwards; /* Typing animation */
+    }
+
+    @keyframes typing {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+    /* Form styles */
+    .form {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #3498db;
+      border-radius: 4px;
+      width: 300px;
+      margin-right: 10px;
+    }
+
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Search results styles */
+    .results {
+      margin-top: 20px;
+      width: 921.6px;
+      height: 321.6px;
+      overflow: auto;
+      margin: 48px -99.2px 48px 0;
+      padding: 10px;
+      margin: 0 auto;
+    }
+
+    .result-item {
+      margin-bottom: 10px;
+    }
+
+    .result-box {
+      background-color: #f5f5dc;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border: 2px solid #f5f5dc;
+    }
+
+    .result-box:hover {
+      background-color: #ebebd4;
+      border: 2px solid #ebebd4;
+    }
+
+    .result-box:active {
+      background-color: #f5f5dc;
+      border: 2px solid #f5f5dc;
+    }
+
+    .document-name {
+      margin: 0;
+      font-weight: bold;
+      font-family: 'Indie Flower', cursive;
+      font-color: #000000;
+    }
+
+    /* Colorful and professional styles */
+    .container {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector("form");
+      const loader = document.querySelector(".loader");
+
+      form.addEventListener("submit", function () {
+        loader.style.display = "flex";
+      });
+
+      
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <h1>SearchEmAll</h1>
+    </div>
+    <div class="form">
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.search.label }}
+        {{ form.search() }}
+        {{ form.submit() }}
+      </form>
+    </div>
+    <div class="results">
+      <div class="loader">
+        <div class="spinner"></div>
+      </div>
+      {% if results %}
+      {% for result in results %}
+      <div class="result-item">
+        <a href="{{ result['Link'] }}" target="_blank">
+          <div class="result-box">
+            <p class="document-name">{{ " ".join(result['Document'].split()[1:]) }}</p>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
