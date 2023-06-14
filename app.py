@@ -6,11 +6,10 @@ from wtforms import StringField, SubmitField
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sibling_dir = os.path.join(current_dir, "..", "Qdata")
-txt_dir = os.path.join(current_dir, "..", "Text_files")
 
 index_path=os.path.join(sibling_dir,"index.txt")
 Qindex_path=os.path.join(sibling_dir,"Qindex.txt")
-data_path=os.path.join(current_dir,"..","TF_IDF_DATA")
+data_path=current_dir
 
 vocab_file=os.path.join(data_path,"vocab.txt")
 idf_file=os.path.join(data_path,"idf-values.txt")
