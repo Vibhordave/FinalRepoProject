@@ -129,6 +129,9 @@
     .result-box:hover {
       background-color: #ebebd4;
       border: 2px solid #ebebd4;
+      transform: scale(1.02); /* Add a slight scale effect */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a box shadow effect */
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Add transitions for smoother effects */
     }
 
     .result-box:active {
@@ -139,7 +142,6 @@
     .document-name {
       margin: 0;
       font-weight: bold;
-      font-family: 'Indie Flower', cursive;
       font-color: #000000;
     }
 
